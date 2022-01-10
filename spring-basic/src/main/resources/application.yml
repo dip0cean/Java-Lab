@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    group:
+      local: development, common
+      dev: development, common
+      prod: production, common
+    active: prod
+
+# common
+---
+spring:
+  config:
+    activate:
+      on-profile: common
+app:
+  name: spring
+
+# test
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    url: jdbc:mysql://111.222.333.444:3306/testProfile?characterEncoding=UTF-8
+    username: test
+    password: test
+
+# prod
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: jdbc:mysql://123.456.789.000:3306/prodProfile?characterEncoding=UTF-8
+    username: prod
+    password: prod
