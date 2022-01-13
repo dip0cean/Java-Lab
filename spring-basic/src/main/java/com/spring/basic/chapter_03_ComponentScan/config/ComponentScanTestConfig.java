@@ -1,6 +1,5 @@
 package com.spring.basic.chapter_03_ComponentScan.config;
 
-import com.spring.basic.chapter_03_ComponentScan.annotaion.ExcludeTest;
 import com.spring.basic.chapter_03_ComponentScan.annotaion.IncludeTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
