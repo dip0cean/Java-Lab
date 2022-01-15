@@ -1,4 +1,4 @@
-package com.spring.basic.chapter_10_Data_Binding;
+package com.spring.basic.chapter_10_Data_Binding.PropertyEditor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.WebDataBinder;

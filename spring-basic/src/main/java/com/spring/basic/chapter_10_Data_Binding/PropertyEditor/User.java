@@ -1,18 +1,18 @@
-package com.spring.basic.chapter_10_Data_Binding;
+package com.spring.basic.chapter_10_Data_Binding.PropertyEditor;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
 
     private Integer id;
 
     private String name;
 
+    @Builder
     public User(Integer id) {
         this.id = id;
     }

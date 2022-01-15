@@ -1,4 +1,4 @@
-package com.spring.basic.chapter_10_Data_Binding;
+package com.spring.basic.chapter_10_Data_Binding.PropertyEditor;
 
 import java.beans.PropertyEditorSupport;
 
@@ -12,6 +12,6 @@ public class UserEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-        setValue(new User(Integer.parseInt(text)));
+        setValue(User.builder().id(Integer.parseInt(text)).build());
     }
 }
