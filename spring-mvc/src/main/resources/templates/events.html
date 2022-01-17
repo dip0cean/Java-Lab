@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+</head>
+<body>
+<h1>테이블 목록</h1>
+<table>
+    <thead>
+    <tr>
+        <th>이름</th>
+        <th>참가 인원</th>
+        <th>시작일시</th>
+        <th>종료일시</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event: ${events}">
+        <td th:text="${event.name}">이벤트명</td>
+        <td th:text="${event.limitOfEnrollment}">이벤트명</td>
+        <td th:text="${event.startDateTime}">이벤트명</td>
+        <td th:text="${event.endDateTime}">이벤트명</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
