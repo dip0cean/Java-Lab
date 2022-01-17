@@ -1,12 +1,14 @@
 package com.spring.basic.chapter_12_AOP;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class SimpleEventService implements EventService {
 
+    @NonNull
     @PerAnnotation
     @Override
     public void createEvent() {
