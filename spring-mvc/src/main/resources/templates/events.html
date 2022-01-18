@@ -18,9 +18,9 @@
     <tbody>
     <tr th:each="event: ${events}">
         <td th:text="${event.name}">이벤트명</td>
-        <td th:text="${event.limitOfEnrollment}">이벤트명</td>
-        <td th:text="${event.startDateTime}">이벤트명</td>
-        <td th:text="${event.endDateTime}">이벤트명</td>
+        <td th:text="${event.limitOfEnrollment}">참여인원</td>
+        <td th:text="${event.startDateTime}">시작일자</td>
+        <td th:text="${event.endDateTime}">종료일자</td>
     </tr>
     </tbody>
 </table>
