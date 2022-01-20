@@ -21,10 +21,18 @@
 
   <dependencies>
     <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope> <!-- 코딩하는 시점에서는 사용 가능하지만, 해당 의존성은 Tomcat Container 에서 지원해주기 때문에 런타임 시점(.war)에서는 제외된다. -->
+    </dependency>
+
+
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
+      <version>4.13.2</version>
+      <scope>test</scope> <!-- source 디렉토리에서는 사용할 수 없고, 오직 test 디렉토리 내에서만 사용 가능하다. -->
     </dependency>
   </dependencies>
 
