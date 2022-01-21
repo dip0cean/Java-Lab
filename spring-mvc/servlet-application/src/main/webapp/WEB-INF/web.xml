@@ -5,6 +5,22 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <!--  Filter  -->
+    <filter>
+        <filter-name>myFilter</filter-name>
+        <filter-class>com.spring.MyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myFilter</filter-name>
+        <servlet-name>helloServlet</servlet-name>
+    </filter-mapping>
+
+    <!--  Listener  -->
+    <listener>
+        <listener-class>com.spring.MyListener</listener-class>
+    </listener>
+
+    <!--  Servlet  -->
     <servlet>
         <servlet-name>helloServlet</servlet-name>
         <servlet-class>com.spring.HelloServlet</servlet-class>
