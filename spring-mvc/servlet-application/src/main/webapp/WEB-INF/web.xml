@@ -5,6 +5,16 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <!--  Context  -->
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>com.spring.AppConfig</param-value>
+    </context-param>
+
     <!--  Filter  -->
     <filter>
         <filter-name>myFilter</filter-name>
@@ -18,6 +28,10 @@
     <!--  Listener  -->
     <listener>
         <listener-class>com.spring.MyListener</listener-class>
+    </listener>
+    <listener>
+        <!--    ContextLoaderListener > Application Context 를 Servlet Context 의 생명주기에 맞춰서 바인딩해주는 역할을 한다.    -->
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
     <!--  Servlet  -->

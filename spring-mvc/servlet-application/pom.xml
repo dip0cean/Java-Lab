@@ -27,6 +27,12 @@
       <scope>provided</scope> <!-- 코딩하는 시점에서는 사용 가능하지만, 해당 의존성은 Tomcat Container 에서 지원해주기 때문에 런타임 시점(.war)에서는 제외된다. -->
     </dependency>
 
+    <!-- Spring Web MVC -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.3.14</version>
+    </dependency>
 
     <dependency>
       <groupId>junit</groupId>
