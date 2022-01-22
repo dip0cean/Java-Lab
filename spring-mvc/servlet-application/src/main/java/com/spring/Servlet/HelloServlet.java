@@ -1,4 +1,4 @@
-package com.spring.Servlet;
+package com.spring.servlet;
 
 import com.spring.servlce.HelloService;
 import org.springframework.context.ApplicationContext;
