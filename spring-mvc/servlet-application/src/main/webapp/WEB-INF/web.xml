@@ -5,43 +5,66 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <!--  ContextLoaderListener 를 통해 RootWebApplicationContext 를 만들 때, AppConfig 를 기준으로 Bean 이 해당 Context 에 등록된다.  -->
     <!--  Context  -->
-    <context-param>
-        <param-name>contextClass</param-name>
-        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-    </context-param>
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>com.spring.AppConfig</param-value>
-    </context-param>
+    <!--    <context-param>-->
+    <!--        <param-name>contextClass</param-name>-->
+    <!--        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>-->
+    <!--    </context-param>-->
+    <!--    <context-param>-->
+    <!--        <param-name>contextConfigLocation</param-name>-->
+    <!--        <param-value>com.spring.AppConfig</param-value>-->
+    <!--    </context-param>-->
 
+    <!--  HelloServlet 에 등록될 Filter  -->
     <!--  Filter  -->
-    <filter>
-        <filter-name>myFilter</filter-name>
-        <filter-class>com.spring.MyFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>myFilter</filter-name>
-        <servlet-name>helloServlet</servlet-name>
-    </filter-mapping>
+    <!--    <filter>-->
+    <!--        <filter-name>myFilter</filter-name>-->
+    <!--        <filter-class>com.spring.MyFilter</filter-class>-->
+    <!--    </filter>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>myFilter</filter-name>-->
+    <!--        <servlet-name>helloServlet</servlet-name>-->
+    <!--    </filter-mapping>-->
 
     <!--  Listener  -->
-    <listener>
-        <listener-class>com.spring.MyListener</listener-class>
-    </listener>
-    <listener>
-        <!--    ContextLoaderListener > Application Context 를 Servlet Context 의 생명주기에 맞춰서 바인딩해주는 역할을 한다.    -->
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <!--    <listener>-->
+    <!--        <listener-class>com.spring.MyListener</listener-class>-->
+    <!--    </listener>-->
+    <!--    <listener>-->
+    <!--    ContextLoaderListener > Application Context 를 Servlet Context 의 생명주기에 맞춰서 바인딩해주는 역할을 한다.    -->
+    <!--        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+    <!--    </listener>-->
 
     <!--  Servlet  -->
-    <servlet>
-        <servlet-name>helloServlet</servlet-name>
-        <servlet-class>com.spring.HelloServlet</servlet-class>
-    </servlet>
+    <!--  HelloServlet 은 HttpServlet 을 바로 상속받기 때문에 Servlet 으로 등록 가능하다.  -->
+    <!--  HttpServlet 을 상속받지 않는 객체는 Servlet 으로 등록할 수 없다.  -->
+    <!--    <servlet>-->
+    <!--        <servlet-name>helloServlet</servlet-name>-->
+    <!--        <servlet-class>com.spring.HelloServlet</servlet-class>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>helloServlet</servlet-name>-->
+    <!--        <url-pattern>/hello</url-pattern>-->
+    <!--    </servlet-mapping>-->
 
+    <!--  DispatcherServlet 은 FrameworkServlet > HttpServletBean > HttpServlet 순으로 상속받고 있다.  -->
+    <!--  또한 FrontController 디자인 패턴으로 구현되어 있으며, 그 자체가 Servlet 이기 때문에 여러 개의 DispatcherServlet 을 등록할 수 있다.(별도의 XML 파일 설정 필요)  -->
+    <!--  하나의 DispatcherServlet 을 통해서 모든 Bean 을 등록하여 사용하고 싶다면 별도로 ContextLoadListener 를 통해 RootWebApplicationContext 를 만들 필요없다.  -->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+        </init-param>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>com.spring.WebConfig</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>helloServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/app/*</url-pattern>
     </servlet-mapping>
 </web-app>
