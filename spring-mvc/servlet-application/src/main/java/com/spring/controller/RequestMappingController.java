@@ -21,7 +21,7 @@ public class RequestMappingController {
     @GetMapping("/viewResolver")
     public String viewResolver() {
 
-//        return "/WEB-INF/sample.jsp"; // Custom ViewResolver 를 설정하지 않았을 경우
-        return "sample";
+//        return "/WEB-INF/viewResolver.jsp"; // Custom ViewResolver 를 설정하지 않았을 경우
+        return "viewResolver";
     }
 }
