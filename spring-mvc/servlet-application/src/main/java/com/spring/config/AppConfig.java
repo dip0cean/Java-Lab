@@ -1,4 +1,4 @@
-package com.spring;
+package com.spring.config;
 
 /**
  * ContextLoaderContext 가 Application Context(= AnnotationConfigApplicationContext) 를 만들 때

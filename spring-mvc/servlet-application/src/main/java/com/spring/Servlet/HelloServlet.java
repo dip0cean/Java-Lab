@@ -1,5 +1,6 @@
-package com.spring;
+package com.spring.Servlet;
 
+import com.spring.servlce.HelloService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 

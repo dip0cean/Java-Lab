@@ -7,14 +7,14 @@
 
     <!--  ContextLoaderListener 를 통해 RootWebApplicationContext 를 만들 때, AppConfig 를 기준으로 Bean 이 해당 Context 에 등록된다.  -->
     <!--  Context  -->
-    <!--    <context-param>-->
-    <!--        <param-name>contextClass</param-name>-->
-    <!--        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>-->
-    <!--    </context-param>-->
-    <!--    <context-param>-->
-    <!--        <param-name>contextConfigLocation</param-name>-->
-    <!--        <param-value>com.spring.AppConfig</param-value>-->
-    <!--    </context-param>-->
+    <!--        <context-param>-->
+    <!--            <param-name>contextClass</param-name>-->
+    <!--            <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>-->
+    <!--        </context-param>-->
+    <!--        <context-param>-->
+    <!--            <param-name>contextConfigLocation</param-name>-->
+    <!--            <param-value>com.spring.config.AppConfig</param-value>-->
+    <!--        </context-param>-->
 
     <!--  HelloServlet 에 등록될 Filter  -->
     <!--  Filter  -->
@@ -39,14 +39,14 @@
     <!--  Servlet  -->
     <!--  HelloServlet 은 HttpServlet 을 바로 상속받기 때문에 Servlet 으로 등록 가능하다.  -->
     <!--  HttpServlet 을 상속받지 않는 객체는 Servlet 으로 등록할 수 없다.  -->
-    <!--    <servlet>-->
-    <!--        <servlet-name>helloServlet</servlet-name>-->
-    <!--        <servlet-class>com.spring.HelloServlet</servlet-class>-->
-    <!--    </servlet>-->
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>helloServlet</servlet-name>-->
-    <!--        <url-pattern>/hello</url-pattern>-->
-    <!--    </servlet-mapping>-->
+    <!--        <servlet>-->
+    <!--            <servlet-name>helloServlet</servlet-name>-->
+    <!--            <servlet-class>com.spring.Servlet.HelloServlet</servlet-class>-->
+    <!--        </servlet>-->
+    <!--        <servlet-mapping>-->
+    <!--            <servlet-name>helloServlet</servlet-name>-->
+    <!--            <url-pattern>/hello</url-pattern>-->
+    <!--        </servlet-mapping>-->
 
     <!--  DispatcherServlet 은 FrameworkServlet > HttpServletBean > HttpServlet 순으로 상속받고 있다.  -->
     <!--  또한 FrontController 디자인 패턴으로 구현되어 있으며, 그 자체가 Servlet 이기 때문에 여러 개의 DispatcherServlet 을 등록할 수 있다.(별도의 XML 파일 설정 필요)  -->
@@ -60,7 +60,7 @@
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>com.spring.WebConfig</param-value>
+            <param-value>com.spring.config.WebConfig</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
