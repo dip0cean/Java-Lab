@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+// RequestMappingHandlerMapping, RequestMappingHandlerAdapter 에 의해 처리된다.
 @Controller
 public class RequestMappingController {
 

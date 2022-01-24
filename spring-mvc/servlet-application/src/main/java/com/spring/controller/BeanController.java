@@ -6,6 +6,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// BeanNameUrlHandlerMapping, BeanNameUrlHandlerAdapter 에 의해 처리된다.
 @org.springframework.stereotype.Controller("/bean")
 public class BeanController implements Controller {
     @Override

@@ -16,6 +16,10 @@ public class WebApplication implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         // ApplicationContext 생성
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        // @EnableWebMvc 어노테이션을 사용할 경우 필수 설정값이다.
+        // ServletContext 를 참조하고 있기 때문에 주입해줘야 한다.
+        context.setServletContext(servletContext);
+        // WebConfig 클래스를 기준으로 Bean 객체를 설정한다.
         context.register(WebConfig.class);
         context.refresh();
 
@@ -30,6 +34,5 @@ public class WebApplication implements WebApplicationInitializer {
             - 원인 : WebConfig 클래스 파일을 config 디렉토리로 옮겨놔서 AnnotationConfigApplicationContext 가 config 하위에 존재하는 컴포넌트 Bean 객체를 찾을 수가 없어 등록하지 못함
             - 해결 : WebConfig 클래스를 상위 디렉토리로 옮겨서 해결
          */
-
     }
 }
