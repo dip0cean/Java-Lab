@@ -24,5 +24,7 @@ public class WebApplication implements WebApplicationInitializer {
         DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
         ServletRegistration.Dynamic app = servletContext.addServlet("app", dispatcherServlet);
         app.addMapping("/app/*"); // /app 의 하위 경로 모두를 포함한다.
+
+        // AnnotationConfigWebApplicationContext 에서 왜 어노테이션으로 등록한 Bean 객체를 Spring IoC 컨테이너에 등록하지 못하는지 문제 해결하기
     }
 }
