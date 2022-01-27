@@ -11,7 +11,7 @@ import java.util.Locale;
 public class PersonFormatter implements Formatter<Person> {
     @Override
     public Person parse(String text, Locale locale) throws ParseException {
-        return new Person(text);
+        return Person.builder().name(text).build();
     }
 
     @Override
