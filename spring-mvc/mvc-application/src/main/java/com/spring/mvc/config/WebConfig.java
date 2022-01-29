@@ -29,7 +29,10 @@ public class WebConfig implements WebMvcConfigurer {
 
         // GreetingInterceptor
         registry.addInterceptor(new GreetingInterceptor())
+                // 특정 UrlPath 에 한해서 해당 인터셉터가 동작한다.
                 .addPathPatterns("/interceptor/greeting")
+                // 여러 인터셉터가 등록된 경우 해당 값의 순서대로 인터셉터가 호출된다.
+                // postHandle(), afterCompletion() 의 경우 역순으로 호출된다.
                 .order(-1);
 
         // AnotherInterceptor
