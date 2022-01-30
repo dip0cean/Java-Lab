@@ -8,6 +8,7 @@ import com.spring.solid.srp.payment.GlobalPaymentService;
 import com.spring.solid.srp.payment.LocalPaymentService;
 import com.spring.solid.srp.payment.OldPaymentService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(value = {
-        PaymentController.class,
+        SrpController.class,
         OldPaymentService.class,
         LocalPaymentService.class,
         GlobalPaymentService.class,
         CardTypeFactory.class
 })
-class PaymentControllerTest {
+class SrpControllerTest {
 
     @Autowired
     ObjectMapper objectMapper;
@@ -85,6 +86,7 @@ class PaymentControllerTest {
      * @throws Exception Exception
      */
     @Test
+    @DisplayName("국내 가맹점 결제 테스트 (SRP 미적용)")
     void payByLocal() throws Exception {
         // BC카드 결제 테스트
         mockMvc.perform(post("/pay/local")
@@ -117,6 +119,7 @@ class PaymentControllerTest {
      * @throws Exception Exception
      */
     @Test
+    @DisplayName("해외 가맹점 결제 테스트 (SRP 미적용)")
     void payByGlobal() throws Exception {
         // BC카드 결제 테스트
         mockMvc.perform(post("/pay/global")
@@ -149,6 +152,7 @@ class PaymentControllerTest {
      * @throws Exception Exception
      */
     @Test
+    @DisplayName("국내 가맹점 결제 테스트 (SRP 적용)")
     void payByLocal_SRP() throws Exception {
         // BC카드 결제 테스트
         mockMvc.perform(post("/pay/local/srp")
@@ -181,6 +185,7 @@ class PaymentControllerTest {
      * @throws Exception Exceptions
      */
     @Test
+    @DisplayName("해외 가맹점 결제 테스트 (SRP 적용)")
     void payByGlobal_SRP() throws Exception {
         // BC카드 결제 테스트
         mockMvc.perform(post("/pay/global/srp")

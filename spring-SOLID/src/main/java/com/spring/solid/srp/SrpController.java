@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/pay")
 @RequiredArgsConstructor
-public class PaymentController {
+public class SrpController {
 
     private final CardTypeFactory cardTypeFactory;
 
