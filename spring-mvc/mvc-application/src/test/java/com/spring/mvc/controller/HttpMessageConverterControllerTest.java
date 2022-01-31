@@ -16,7 +16,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -64,6 +64,7 @@ class HttpMessageConverterControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(json));
+                .andExpect(jsonPath("$.id").value(ddoick.getId()))
+                .andExpect(jsonPath("$.name").value(ddoick.getName()));
     }
 }
