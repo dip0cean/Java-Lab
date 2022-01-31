@@ -16,6 +16,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -23,6 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HttpMessageConverterControllerTest {
 
     private MockMvc mockMvc;
+
+    private Dog ddoick;
 
     @Autowired
     WebApplicationContext context;
@@ -39,17 +42,28 @@ class HttpMessageConverterControllerTest {
                 .addFilter(new CharacterEncodingFilter("UTF-8", true))
                 .alwaysDo(System.out::println)
                 .build();
+        this.ddoick = dogRepository.save(Dog.builder().name("또익").build());
     }
 
     @Test
     public void httpMessageTest() throws Exception {
-        Dog ddoick = dogRepository.save(Dog.builder().name("또익").build());
-
         mockMvc.perform(get("/httpMessage")
                         .content(mapper.writeValueAsString(ddoick))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void jsonMessageTest() throws Exception {
+        String json = mapper.writeValueAsString(ddoick);
+        mockMvc.perform(get("/jsonMessage")
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(json));
     }
 }
