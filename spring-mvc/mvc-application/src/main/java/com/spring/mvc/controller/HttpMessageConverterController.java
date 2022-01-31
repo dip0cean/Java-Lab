@@ -1,5 +1,6 @@
 package com.spring.mvc.controller;
 
+import com.spring.mvc.model.Cat;
 import com.spring.mvc.model.Dog;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,5 +21,11 @@ public class HttpMessageConverterController {
     @ResponseBody
     public Dog jsonMessage(@RequestBody Dog dog) {
         return dog;
+    }
+
+    @GetMapping("/xmlMessage")
+    @ResponseBody
+    public Cat xmlMessage(@RequestBody Cat cat) {
+        return cat;
     }
 }
