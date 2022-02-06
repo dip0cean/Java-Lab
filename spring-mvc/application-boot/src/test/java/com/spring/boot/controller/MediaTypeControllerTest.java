@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,6 +26,13 @@ class MediaTypeControllerTest {
 
         mockMvc.perform(get("/accept")
                         .accept(MediaType.TEXT_PLAIN))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void optionTest() throws Exception {
+        mockMvc.perform(options("/option"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
