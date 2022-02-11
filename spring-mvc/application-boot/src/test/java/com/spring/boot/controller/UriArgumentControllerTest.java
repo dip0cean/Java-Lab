@@ -35,4 +35,13 @@ class UriArgumentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value("2"));
     }
+
+    @Test
+    void getMatrixTest() throws Exception {
+        mockMvc.perform(get("/matrix/1;name=newEvent"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value("1"));
+
+    }
 }
