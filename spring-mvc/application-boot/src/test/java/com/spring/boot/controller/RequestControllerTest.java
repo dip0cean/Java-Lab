@@ -1,6 +1,7 @@
 package com.spring.boot.controller;
 
 import com.spring.boot.util.converter.EventConverter;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,6 +27,7 @@ class RequestControllerTest {
     MockMvc mockMvc;
 
     @Test
+    @DisplayName("@RequestParam 테스트")
     public void getRequestParamTest() throws Exception {
         mockMvc.perform(get("/request")
                         .param("id", "1"))
@@ -35,7 +37,8 @@ class RequestControllerTest {
     }
 
     @Test
-    public void getRequestParams() throws Exception {
+    @DisplayName("@RequestParam Map<String, String> 바인딩 테스트")
+    public void getRequestParamsTest() throws Exception {
 
         Map<String, String> languages = new HashMap<>();
         languages.put(Locale.ENGLISH.getLanguage(), "hello");
@@ -53,7 +56,8 @@ class RequestControllerTest {
     }
 
     @Test
-    public void getRequired() throws Exception {
+    @DisplayName("@RequestParam(required = true) 테스트 > BadRequest")
+    public void getRequiredTest() throws Exception {
         mockMvc.perform(get("/request/required")
                         .param("id", "1"))
                 .andDo(print())
@@ -61,7 +65,8 @@ class RequestControllerTest {
     }
 
     @Test
-    public void getModel() throws Exception {
+    @DisplayName("@ModelAttribute 테스트")
+    public void getModelTest() throws Exception {
         mockMvc.perform(get("/modelAttribute")
                         .param("id", "1"))
                 .andDo(print())
@@ -70,7 +75,8 @@ class RequestControllerTest {
     }
 
     @Test
-    public void getModelByBindingResult() throws Exception {
+    @DisplayName("BindingResult 및 @Valid 테스트")
+    public void getModelByBindingResultTest() throws Exception {
         String str = "ErrorTest";
         mockMvc.perform(get("/modelAttribute/bindingResult")
                         .param("id", "1")
@@ -81,12 +87,14 @@ class RequestControllerTest {
     }
 
     @Test
-    public void getValid() throws Exception {
-        mockMvc.perform(get("/valid")
+    @DisplayName("@Validated 및 ValidGroup 테스트")
+    public void validTest() throws Exception {
+        mockMvc.perform(get("/validated")
                         .param("id", "1")
-                        .param("order", "-10"))
+                        .param("age", "-10"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("must be greater than or equal to 0"));
+                .andExpect(jsonPath("[0]").value("must be greater than or equal to 0"))
+                .andExpect(jsonPath("[1]").value("must not be null"));
     }
 }
