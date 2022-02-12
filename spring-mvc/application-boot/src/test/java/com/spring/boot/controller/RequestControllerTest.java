@@ -14,8 +14,7 @@ import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(value = {
         RequestController.class,
@@ -59,5 +58,35 @@ class RequestControllerTest {
                         .param("id", "1"))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void getModel() throws Exception {
+        mockMvc.perform(get("/modelAttribute")
+                        .param("id", "1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value("1"));
+    }
+
+    @Test
+    public void getModelByBindingResult() throws Exception {
+        String str = "ErrorTest";
+        mockMvc.perform(get("/modelAttribute/bindingResult")
+                        .param("id", "1")
+                        .param("order", str))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(String.format("Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Integer' for property 'order'; nested exception is java.lang.NumberFormatException: For input string: \"%s\"", str)));
+    }
+
+    @Test
+    public void getValid() throws Exception {
+        mockMvc.perform(get("/valid")
+                        .param("id", "1")
+                        .param("order", "-10"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("must be greater than or equal to 0"));
     }
 }

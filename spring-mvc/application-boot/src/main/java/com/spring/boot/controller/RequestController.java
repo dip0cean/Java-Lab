@@ -1,15 +1,22 @@
 package com.spring.boot.controller;
 
 import com.spring.boot.domain.Event;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
+import java.util.Objects;
 
+@Slf4j
 @RestController
 public class RequestController {
 
+    // @RequestParam
     @GetMapping("/request")
     public Event getRequestParam(@RequestParam("id") Event event) {
         return event;
@@ -24,5 +31,29 @@ public class RequestController {
     public Event getRequired(@RequestParam String id,
                              @RequestParam String name) {
         return Event.builder().id(id).name(name).build();
+    }
+
+    // @ModelAttribute
+    @GetMapping("/modelAttribute")
+    public Event getModel(@ModelAttribute Event event) {
+        return event;
+    }
+
+    @GetMapping("/modelAttribute/bindingResult")
+    public String getModelByBindingResult(@ModelAttribute Event event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage();
+        }
+        return event.getId();
+    }
+
+    // @Valid > Spring Boot 2.3.x 부터는 별도의 의존성을 추가해줘야 한다.
+    // @ModelAttribute > 생략 가능하다.
+    @GetMapping("/valid")
+    public String valid(@Valid Event event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage();
+        }
+        return event.getId();
     }
 }
