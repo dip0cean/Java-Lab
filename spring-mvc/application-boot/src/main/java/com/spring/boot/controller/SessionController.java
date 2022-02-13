@@ -7,10 +7,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @SessionAttributes("users")
 public class SessionController {
 
+    // HttpSession
     @GetMapping("/session")
     public String getSession(@Validated(User.JobCheck.class) User user,
                              BindingResult bindingResult,
@@ -38,6 +41,7 @@ public class SessionController {
         return "/index";
     }
 
+    // @SessionAttributes
     @GetMapping("/sessionAttributes")
     public String getSession(@Validated(User.AgeCheck.class) User user,
                              BindingResult bindingResult,
@@ -60,6 +64,14 @@ public class SessionController {
     @PostMapping("/setComplete")
     public String getSession(SessionStatus sessionStatus) {
         sessionStatus.setComplete();
+        return "/index";
+    }
+
+    // @SessionAttribute
+    @GetMapping("/sessionAttribute")
+    public String getSession(Model model,
+                             @SessionAttribute LocalDateTime visit) {
+        model.addAttribute("visit", visit);
         return "/index";
     }
 }
