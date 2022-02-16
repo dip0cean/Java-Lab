@@ -40,4 +40,15 @@ public class RedirectController {
     public User getRedirect(@ModelAttribute User user) {
         return user;
     }
+
+    @GetMapping("/redirect/flash")
+    public String getRedirectFlash(RedirectAttributes redirectAttributes) {
+        User user = User
+                .builder()
+                .id("2")
+                .name("김퍼피")
+                .build();
+        redirectAttributes.addFlashAttribute("user", user);
+        return "redirect:/redirect/user";
+    }
 }
