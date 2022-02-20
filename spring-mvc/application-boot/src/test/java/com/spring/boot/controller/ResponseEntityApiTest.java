@@ -45,4 +45,14 @@ class ResponseEntityApiTest {
                 .andExpect(jsonPath("id").value("1"))
                 .andExpect(jsonPath("name").value("new Event"));
     }
+
+    @Test
+    public void getResponseEntity() throws Exception {
+        event.setOrder(-20);
+        mockMvc.perform(post("/api/responseEntity")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(event)))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
 }
