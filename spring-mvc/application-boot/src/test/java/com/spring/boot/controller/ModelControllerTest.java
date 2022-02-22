@@ -26,6 +26,14 @@ class ModelControllerTest {
                 .andDo(print())
                 .andExpect(jsonPath("name").value("족제비 in Unhappy World"));
 
+        // @DateTimeFormat 어노테이션 테스트
+        mockMvc.perform(get("/model/getEvent/localDate")
+                        .param("startDate", "2022-02-22")
+                        .param("endDate", "2022-02-23"))
+                .andDo(print())
+                .andExpect(jsonPath("startDate").value("2022-02-22"))
+                .andExpect(jsonPath("endDate").value("2022-02-23"));
+
         mockMvc.perform(get("/model/getModel"))
                 .andDo(print())
                 .andExpect(model().attributeExists("users", "event", "locale"));

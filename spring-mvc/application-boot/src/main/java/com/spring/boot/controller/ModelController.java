@@ -7,10 +7,8 @@ import com.spring.boot.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -71,5 +69,19 @@ public class ModelController {
     @GetMapping("/getModel")
     public ModelAndView getModel() {
         return new ModelAndView("/index");
+    }
+
+    @GetMapping("/getEvent/localDate")
+    @ResponseBody
+    public Event getEvent(Event event) {
+        return event;
+    }
+
+    // 특정 바인더를 커스터마이징 할 수 있다.
+    @InitBinder
+    public void initEventBinder(WebDataBinder webDataBinder) {
+        // 핸들러 메소드에서 받아오는 데이터 중 지정된 필드는 제외하고 가져온다.
+        webDataBinder.setDisallowedFields("id"); // 블랙 리스트 기반 > 제외
+        webDataBinder.setDisallowedFields("name"); // 화이트 리스트 기반 > 포함
     }
 }
