@@ -21,7 +21,7 @@ public class ExceptionController {
 
     @ExceptionHandler(NullPointerException.class)
     public String runtimeExceptionHandler(NullPointerException exception, Model model) {
-        model.addAttribute("messgage", "null point error");
+        model.addAttribute("message", "null point error");
         return "/error";
     }
 
@@ -33,7 +33,7 @@ public class ExceptionController {
         }
 
         if (event.getId().equals("1")) {
-            throw new CustomException();
+            throw new CustomException("Hello Custom Exception!");
         }
 
         if (event.getId().equals("2")) {
