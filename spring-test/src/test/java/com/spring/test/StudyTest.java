@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+// DisplayNameGenerator.ReplaceUnderscores > 언더바를 공백으로 바꿔준다.
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
 
     /**
@@ -42,6 +44,10 @@ class StudyTest {
     void create_2() {
         System.out.println("create_2");
     }
+
+    @Test
+    @DisplayName("@DisplayName 이용해서 메소드명 바꾸기")
+    void create_3() {System.out.println("create_3");}
 
     /**
      * 단일 테스트 메소드 혹은 전체 테스트 메소드의 테스트를 진행한 뒤에 실행되는 메소드이다.
