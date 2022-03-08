@@ -7,7 +7,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AssertTest {
+public class AssertXXXTest {
 
     @Test
     @DisplayName("기본적인 Assert 테스트")
