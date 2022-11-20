@@ -8,9 +8,7 @@ import me.osean.effective_java.chapter_01.item_01.entity.Product;
 import me.osean.effective_java.chapter_01.item_01.entity.Wastebasket;
 import me.osean.effective_java.chapter_01.item_01.service.HelloService;
 
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.ServiceLoader;
+import java.util.*;
 
 public class Item_01 {
     public static void main(String[] args) {
@@ -50,6 +48,27 @@ public class Item_01 {
         Character e = new Character('e', "black", font);
         Character l = new Character('l', "black", font);
         Character o = new Character('o', "black", font);
-        System.out.printf("%s%s%s%s%s\n", h, e, l, l, o);
+        System.out.printf("%s%s%s%s%s\n\n", h, e, l, l, o);
+
+        // Q1. 내림차순으로 정렬하는 Comparator 를 만들고 List<Integer> 정렬하라.
+        List<Integer> list = Arrays.asList(1, 100, 2, 200, 3, 300);
+        System.out.printf("기본 정렬 : %s\n", list);
+
+        // Comparator 정의
+        Comparator<Integer> comparator = Integer::compareTo;
+
+        // 내림차순
+        list.sort(comparator);
+        System.out.printf("내림차순 : %s\n", list);
+
+        // Q2. Q1 에서 만든 Comparator 를 사용해 오름차순으로 정렬하라.
+        // Comparator 는 인터페이스이기 때문에 Java 8 이전이라면 내부적으로 메소드를 정의할 수 없었다.
+        // 하지만 Java 8 이후부터 인터페이스 내부에 public / default 메소드를 정의할 수 있게 되면서
+        // public static Method 는 인자를 매개변수로 입력하는 경우 사용할 수 있고,
+        // default Method 는 해당 인터페이스를 구현하는 클래스가 선언되어 인터페이스로 추상화된 인스턴스를 가지고 있을 때 사용할 수 있다.
+
+        // 오름차순
+        list.sort(comparator.reversed());
+        System.out.printf("오름차순 : %s\n\n", list);
     }
 }
