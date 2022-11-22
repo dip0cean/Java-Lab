@@ -1,5 +1,6 @@
 package me.osean.effective_java.chapter_01.item_02;
 
+import me.osean.effective_java.chapter_01.item_02.builder_pattern.Sandwich;
 import me.osean.effective_java.chapter_01.item_02.java_beans_pattern.User;
 import me.osean.effective_java.chapter_01.item_02.telescoping_constructor_pattern.NutritionFacts;
 
@@ -30,5 +31,23 @@ public class item_02 {
         user.setNickname("newNickname");
         user.setSex(User.Sex.MALE);
         user.setBirth(LocalDate.of(1995, 3, 4));
+
+        /*
+            Builder Pattern
+            - 부모 클래스와 멤버 필드를 동일하게 가지는 Builder 클래스를 부모 클래스 내부에 정의해 Builder 클래스를 이용해 부모 클래스의 인스턴스를 생성한다.
+            필수 속성들은 Builder 의 생성자로 주입하고, 나머지 선택 속성들은 Builder 의 Setter 메소드를 이용해 상황에 맞게 유연하게 사용 가능하다.
+            이러한 특성 때문에 점층적 생성자 패턴에서 나타나는 문제인 선택 속성에 대한 무분별한 생성자 정의나 Java Beans 의 Setter 의 객체의 불변성을 깨트리는 문제를 극복할 수 있다.
+            Builder 는 Lombok 의 @Builder 를 사용하면 작성해야하는 코드를 비약적으로 줄일 수 있으나, 필수 속성을 지정해 Builder 생성자에 주입할 수 있는 설정이 없다는 단점이 존재한다.
+         */
+        Sandwich porkOatSandwich = new Sandwich
+                .Builder(Sandwich.Bread.OAT_BREAD, Sandwich.Meat.PORK)
+                .build();
+
+        Sandwich beefFlatBreadSandwichSet = new Sandwich
+                .Builder(Sandwich.Bread.FLAT_BREAD, Sandwich.Meat.BEEF)
+                .cheese(Sandwich.Cheese.MOZZARELLA_CHEESE)
+                .beverage(Sandwich.Bevarage.COFFEE)
+                .sideMenu(Sandwich.SideMenu.COOKIE)
+                .build();
     }
 }
