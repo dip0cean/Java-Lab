@@ -62,7 +62,7 @@ public class item_02 {
         Pizza smallNyPizzaWithMushroom = new NyPizza.Builder(NyPizza.Size.SMALL).addTopping(Pizza.Topping.MUSHROOM).build();
 
         Pizza largeCalzonePizza = new CalzonePizza.Builder(true).build();
-        Pizza mediumCalzonePizzaWithHam = new CalzonePizza.Builder(false).addTopping(Pizza.Topping.HAM).build();
-        Pizza smallCalzonePizzaWithOnion = new CalzonePizza.Builder(true).addTopping(Pizza.Topping.ONION).build();
+        Pizza mediumCalzonePizzaWithHam = new CalzonePizza.Builder().addTopping(Pizza.Topping.HAM).build();
+        Pizza smallCalzonePizzaWithOnion = new CalzonePizza.Builder().addTopping(Pizza.Topping.ONION).sauceInside().build();
     }
 }
