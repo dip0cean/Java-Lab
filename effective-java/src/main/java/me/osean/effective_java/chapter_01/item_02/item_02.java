@@ -1,5 +1,8 @@
 package me.osean.effective_java.chapter_01.item_02;
 
+import me.osean.effective_java.chapter_01.item_02.builder_pattern.CalzonePizza;
+import me.osean.effective_java.chapter_01.item_02.builder_pattern.NyPizza;
+import me.osean.effective_java.chapter_01.item_02.builder_pattern.Pizza;
 import me.osean.effective_java.chapter_01.item_02.builder_pattern.Sandwich;
 import me.osean.effective_java.chapter_01.item_02.java_beans_pattern.User;
 import me.osean.effective_java.chapter_01.item_02.telescoping_constructor_pattern.NutritionFacts;
@@ -49,5 +52,17 @@ public class item_02 {
                 .beverage(Sandwich.Bevarage.COFFEE)
                 .sideMenu(Sandwich.SideMenu.COOKIE)
                 .build();
+
+        /*
+            계층적 구조에서 Builder Pattern 을 적용
+            추상 클래스의 추상 Builder 클래스를 정의하고, 상속하는 클래스에서 해당 추상 Builder 를 구현하면서 재귀적인 타입 한정을 이용하도록 한다.
+         */
+        Pizza largeNyPizza = new NyPizza.Builder(NyPizza.Size.LARGE).build();
+        Pizza mediumNyPizzaWithSausage = new NyPizza.Builder(NyPizza.Size.MEDIUM).addTopping(Pizza.Topping.SAUSAGE).build();
+        Pizza smallNyPizzaWithMushroom = new NyPizza.Builder(NyPizza.Size.SMALL).addTopping(Pizza.Topping.MUSHROOM).build();
+
+        Pizza largeCalzonePizza = new CalzonePizza.Builder(true).build();
+        Pizza mediumCalzonePizzaWithHam = new CalzonePizza.Builder(false).addTopping(Pizza.Topping.HAM).build();
+        Pizza smallCalzonePizzaWithOnion = new CalzonePizza.Builder(true).addTopping(Pizza.Topping.ONION).build();
     }
 }
