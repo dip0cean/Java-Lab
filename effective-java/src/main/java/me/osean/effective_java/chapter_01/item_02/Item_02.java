@@ -9,7 +9,7 @@ import me.osean.effective_java.chapter_01.item_02.telescoping_constructor_patter
 
 import java.time.LocalDate;
 
-public class item_02 {
+public class Item_02 {
 
     public static void main(String[] args) {
         /*
