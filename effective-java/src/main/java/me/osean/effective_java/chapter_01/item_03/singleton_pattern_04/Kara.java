@@ -1,9 +1,8 @@
 package me.osean.effective_java.chapter_01.item_03.singleton_pattern_04;
 
-import me.osean.effective_java.chapter_01.item_03.singleton_pattern_01.Idol;
 import me.osean.effective_java.chapter_01.item_03.singleton_pattern_01.Lesserafim;
 
-public class Kara implements Idol {
+public class Kara {
     private static final Kara INSTANCE = new Kara();
 
     private Kara() {
@@ -14,12 +13,11 @@ public class Kara implements Idol {
     }
 
 
-    @Override
     public void greetings() {
         System.out.println("Hello! My Luv, Kamilia! We're KARA!");
     }
 
-    @Override
+
     public void sing() {
         System.out.println("나만의 Honey! Honey! Honey! 돌아서야 하니! 하니! 하니!");
     }
