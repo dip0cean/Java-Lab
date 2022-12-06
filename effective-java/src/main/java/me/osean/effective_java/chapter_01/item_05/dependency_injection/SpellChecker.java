@@ -1,6 +1,7 @@
 package me.osean.effective_java.chapter_01.item_05.dependency_injection;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * 사용하는 자원에 따라 동작이 달라지는 클래스는 정적 유틸리티 클래스나 싱글턴 패턴이 적합하지 않다.
@@ -17,6 +18,10 @@ public class SpellChecker {
 
     public SpellChecker(Dictionary dictionary) {
         this.dictionary = dictionary;
+    }
+
+    public SpellChecker(Supplier<? extends Dictionary> dictionarySupplier) {
+        this.dictionary = dictionarySupplier.get();
     }
 
     public boolean isValid(String word) {

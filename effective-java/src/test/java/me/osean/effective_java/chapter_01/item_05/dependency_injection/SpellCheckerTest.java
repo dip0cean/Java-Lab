@@ -14,4 +14,9 @@ class SpellCheckerTest {
         SpellChecker engChecker = new SpellChecker(EngDictionary.getInstance());
         assertTrue(engChecker.isValid("Hello"));
     }
+
+    @Test
+    void supplier() {
+        SpellChecker korChecker = new SpellChecker(KorDictionary::getInstance);
+    }
 }
