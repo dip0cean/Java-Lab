@@ -1,4 +1,4 @@
-package com.study.repository.service;
+package com.study.service;
 
 import com.study.domain.User;
 import com.study.repository.UserRepository;
