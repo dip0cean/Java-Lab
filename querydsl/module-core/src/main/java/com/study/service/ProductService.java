@@ -17,4 +17,8 @@ public class ProductService {
     public List<Product> getProducts(Pageable pageable) {
         return productRepositoryImpl.getProducts(pageable);
     }
+
+    public List<Product> findByContent(String keyword, Pageable pageable) {
+        return productRepositoryImpl.findByContent(keyword, pageable);
+    }
 }

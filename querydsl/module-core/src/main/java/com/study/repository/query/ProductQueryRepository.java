@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProductQueryRepository {
     List<Product> getProducts(Pageable pageable);
+
+    List<Product> findByContent(String name, Pageable pageable);
 }

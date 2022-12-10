@@ -26,4 +26,15 @@ public class ProductRepositoryImpl implements ProductQueryRepository {
                 .orderBy(product.id.desc())
                 .fetch();
     }
+
+    @Override
+    public List<Product> findByContent(String keyword, Pageable pageable) {
+        return queryFactory
+                .selectFrom(product)
+                .where(product.content.like("%" + keyword + "%"))
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .orderBy(product.id.desc())
+                .fetch();
+    }
 }
