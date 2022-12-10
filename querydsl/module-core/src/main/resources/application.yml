@@ -1,8 +1,15 @@
 spring:
   jpa:
+    # Spring 3.0.x > false
     open-in-view: false
+    # Hibernate change javax > jakarta
+    properties:
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: UNSPECIFIED
   datasource:
-    driver-class-name:  com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://133.186.240.7:3306/monthlything?validationQuery="select 1"&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
     username: monthlything
     password: passW0rd!#

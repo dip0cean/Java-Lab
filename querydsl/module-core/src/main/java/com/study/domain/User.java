@@ -52,7 +52,8 @@ public class User implements Serializable {
         EMAIL("EMAIL"),
         FACEBOOK("FACEBOOK"),
         APPLE("APPLE"),
-        GOOGLE("GOOGLE");
+        GOOGLE("GOOGLE"),
+        KAKAO("KAKAO");
 
         private final String desc;
     }
