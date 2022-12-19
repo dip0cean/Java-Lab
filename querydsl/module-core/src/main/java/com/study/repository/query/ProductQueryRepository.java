@@ -1,6 +1,6 @@
 package com.study.repository.query;
 
-import com.study.domain.Product;
+import com.study.domain.entity.Product;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.study.v1.controller;
 
-import com.study.domain.User;
+import com.study.domain.entity.User;
 import com.study.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
 package com.study.v1.controller;
 
-import com.study.domain.Product;
+import com.study.domain.entity.Product;
 import com.study.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
