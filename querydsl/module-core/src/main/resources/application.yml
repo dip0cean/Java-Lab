@@ -8,8 +8,9 @@ spring:
         persistence:
           sharedCache:
             mode: UNSPECIFIED
+    show-sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://133.186.240.7:3306/monthlything?validationQuery="select 1"&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
-    username: monthlything
-    password: passW0rd!#
+    url: jdbc:mysql://115.85.181.240:3306/query_dsl?validationQuery="select 1"&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
+    username: osean
+    password: Tlatjdgjs510200!
