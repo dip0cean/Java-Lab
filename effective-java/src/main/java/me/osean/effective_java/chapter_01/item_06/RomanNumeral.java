@@ -30,6 +30,6 @@ public class RomanNumeral {
         }
         long finish = System.nanoTime();
 
-        return Math.subtractExact(finish, start);
+        return (finish - start) / 1_000_000;
     }
 }

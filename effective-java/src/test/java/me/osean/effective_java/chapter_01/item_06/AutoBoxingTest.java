@@ -6,18 +6,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-class RomanNumeralTest {
-
-    String romanNumeral = "MCMLXXVI";
+class AutoBoxingTest {
 
     @Test
-    void regexp() {
+    void autoBoxing() {
         assertTrue(() -> {
-            int limit = 100;
-            long slow = RomanNumeral.checkRomanNumeral(limit, romanNumeral, false);
-            long fast = RomanNumeral.checkRomanNumeral(limit, romanNumeral, true);
+            long slow = AutoBoxing.sum(true);
+            long fast = AutoBoxing.sum(false);
 
-            // slow : 6ms, fast : 1ms, fast better than slow : true
+            // slow : 5933ms, fast : 668ms, fast better than slow : true
             log.info("slow : {}ms, fast : {}ms, fast better than slow : {}", slow, fast, fast < slow);
 
             return fast < slow;
