@@ -92,7 +92,7 @@ public class ProductOption {
 
     @Builder.Default
     @JsonIgnore
-    @OneToMany(mappedBy = "productOption", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productOption")
     private List<ProductDiscount> productDiscounts = new ArrayList<>();
 
     @Getter

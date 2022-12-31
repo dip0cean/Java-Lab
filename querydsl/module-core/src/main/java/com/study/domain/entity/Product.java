@@ -93,7 +93,7 @@ public class Product {
 
     @Builder.Default
     @JsonIgnore
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product")
     private List<ProductDiscount> productDiscounts = new ArrayList<>();
 
     @Getter
@@ -112,18 +112,8 @@ public class Product {
         }
     }
 
-    public List<ProductOption> getValidProductOptions() {
-        return this.productOptions
-                .stream()
-                .filter(option -> option.getStatus() == ProductOption.Status.SHOW)
-                .filter(option -> option.getWebPrice() != null)
-                .filter(option -> option.getAppPrice() != null)
-                .filter(option -> option.getFixedPrice() != null)
-                .toList();
-    }
-
     public int getLowestWebPrice() {
-        return this.getValidProductOptions()
+        return this.productOptions
                 .stream()
                 .map(ProductOption::getWebPriceFromProductDiscount)
                 .reduce(Math::min)
@@ -131,7 +121,7 @@ public class Product {
     }
 
     public int getLowestAppPrice() {
-        return this.getValidProductOptions()
+        return this.productOptions
                 .stream()
                 .map(ProductOption::getAppPriceFromProductDiscount)
                 .reduce(Math::min)
@@ -139,17 +129,15 @@ public class Product {
     }
 
     public int getLowestTagPrice() {
-        return this.getValidProductOptions()
+        return this.productOptions
                 .stream()
                 .map(ProductOption::getFixedPrice)
                 .reduce(Math::min)
                 .orElse(100);
     }
 
-    public int getHighestPrice() {
+    public int getHighestPrice(int webPrice, int appPrice) {
         int tagPrice = this.getLowestTagPrice();
-        int webPrice = this.getLowestWebPrice();
-        int appPrice = this.getLowestAppPrice();
 
         return IntStream
                 .of(tagPrice, webPrice, appPrice)
@@ -158,11 +146,11 @@ public class Product {
     }
 
     public LocalDateTime getLatestEndDate() {
-        return this.getValidProductOptions()
+        return this.productOptions
                 .stream()
                 .map(ProductOption::getDiscountEndDate)
                 .filter(Objects::nonNull)
-                .reduce((prev, next) -> prev.isAfter(next) ? prev : next)
+                .findFirst()
                 .orElse(null);
     }
 }

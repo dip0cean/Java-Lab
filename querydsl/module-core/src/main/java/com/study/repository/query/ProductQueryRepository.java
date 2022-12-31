@@ -7,7 +7,5 @@ import org.springframework.data.domain.Slice;
 
 public interface ProductQueryRepository {
 
-    Slice<Product> findDiscountProducts_1(ProductDiscount.Type type, Pageable pageable);
-
-    Slice<Product> findDiscountProducts_2(ProductDiscount.Type type, Pageable pageable);
+    Slice<Product> findDiscountProducts(ProductDiscount.Type type, Pageable pageable);
 }

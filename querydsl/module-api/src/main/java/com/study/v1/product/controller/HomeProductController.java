@@ -24,8 +24,7 @@ public class HomeProductController {
     @GetMapping("/discount/{type}")
     public ResponseEntity<Slice<HomeProductDto>> getDiscountProducts(@PathVariable("type") ProductDiscount.Type type,
                                                                      @PageableDefault(direction = Sort.Direction.DESC, sort = "id") Pageable pageable) {
-//        Slice<HomeProductDto> bestProducts = homeProductService.findDiscountProducts_1(type, pageable);
-        Slice<HomeProductDto> bestProducts = homeProductService.findDiscountProducts_2(type, pageable);
+        Slice<HomeProductDto> bestProducts = homeProductService.findDiscountProducts(type, pageable);
         return ResponseEntity.ok(bestProducts);
     }
 }
